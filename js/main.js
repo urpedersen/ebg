@@ -5,8 +5,11 @@ window.onload = function() {
 
   var first = new Element("o-storage",0,10,10);
   elements.push(first);
-  var second = new Element("leak",1,30,30);
+  var second = new Element("leak",1,30,60);
   first.connect(second);
   elements.push(second);
-};
 
+
+  drawElement(elements[0]);
+  drawElement(elements[1]);
+};
