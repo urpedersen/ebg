@@ -1,3 +1,4 @@
+var elementSize = 20;
 var elements = [];
 
 window.onload = function() {
