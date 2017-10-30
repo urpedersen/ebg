@@ -9,10 +9,10 @@ var direction = {
 	S:3,
 	W:4,
 	properties: {
-		1:{rotation: -Math.PI/2},
-		2:{rotation:  0        },
-		3:{rotation:  Math.PI/2},
-		4:{rotation:  Math.PI},
+		1:{rotation: -Math.PI/2, xAdd: 0             , yAdd:  -elementSize/2},
+		2:{rotation:  0        , xAdd:  elementSize/2, yAdd:  0},
+		3:{rotation:  Math.PI/2, xAdd: 0             , yAdd:  elementSize/2},
+		4:{rotation:  Math.PI  , xAdd: -elementSize/2, yAdd:  0},
 	}
 };
 
@@ -36,11 +36,27 @@ function drawLine(p1,p2){
 
 function drawElement(ele){
 	for (var i = 0; i<= ele.connections.length-1;i++){
+		var xDif = ele.x-ele.connections[i].x;
+		var yDif = ele.y-ele.connections[i].y;
+		console.log(xDif,yDif);
+		if (xDif<0){
+			var dir = direction.E;
+		} else {
+			var dir = direction.W;
+		}
+		if (yDif>0){
+			var dir = direction.N;
+		} else {
+			var dir = direction.S;
+		}
 		// console.log("Found an element");
-		drawConnection(ele,ele.connections[i],"emf",direction.E);
+		ctx.save();
+		ctx.translate(direction.properties[dir].xAdd,direction.properties[dir].yAdd);
+		drawConnection(ele,ele.connections[i],"ef",dir);
+		ctx.restore();
 		ctx.rect(ele.connections[i].x,ele.connections[i].y,1,1);
 	}
-	ctx.fillStyle = "black";
+	ctx.fillStyle = "grey";
 	ctx.fillRect(ele.x- elementSize/2,ele.y- elementSize/2,elementSize,elementSize);
 	ctx.stroke();
 };
