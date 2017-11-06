@@ -38,21 +38,23 @@ function drawElement(ele){
 	for (var i = 0; i<= ele.connections.length-1;i++){
 		var xDif = ele.x-ele.connections[i].x;
 		var yDif = ele.y-ele.connections[i].y;
-		console.log(xDif,yDif);
-		if (xDif<0){
+		// console.log(xDif,yDif);
+		if (xDif == 0){
+			if (yDif>0){
+				var dir = direction.N;
+			} else {
+				var dir = direction.S;
+			}
+		}
+		if (xDif>0){
 			var dir = direction.E;
 		} else {
 			var dir = direction.W;
 		}
-		if (yDif>0){
-			var dir = direction.N;
-		} else {
-			var dir = direction.S;
-		}
 		// console.log("Found an element");
 		ctx.save();
 		ctx.translate(direction.properties[dir].xAdd,direction.properties[dir].yAdd);
-		drawConnection(ele,ele.connections[i],"ef",dir);
+		drawConnection(ele,ele.connections[i],"none",dir);
 		ctx.restore();
 		ctx.rect(ele.connections[i].x,ele.connections[i].y,1,1);
 	}
@@ -85,6 +87,8 @@ function drawConnection(ele1,ele2,type,direc){
 			drawArrow(pos1,rot+Math.PI)
 			drawBar(pos2,rot)
 			break;
+		case "none":
+			break;
 		default:
 			console.log("Error drawing line");
 	}
@@ -106,6 +110,51 @@ function drawArrow(pos,rot){
 	ctx.moveTo(-elementSize/2,-elementSize/2);
 	ctx.lineTo(0,0);
 	ctx.lineTo(-elementSize/2,+elementSize/2);
+	ctx.stroke();
+	ctx.restore();
+}
+
+function drawOConnector(pos){
+	var oConnectorSize = elementSize/2;
+	ctx.save();
+	ctx.beginPath();
+	ctx.translate(pos[0],pos[1]);
+	ctx.arc(0,0,oConnectorSize/2,0,2*Math.PI)
+	ctx.stroke();
+	ctx.beginPath();
+	ctx.moveTo(oConnectorSize,0);
+	ctx.lineTo(0,oConnectorSize);
+	ctx.lineTo(-oConnectorSize,0);
+	ctx.lineTo(0,-oConnectorSize);
+	ctx.lineTo(oConnectorSize,0);
+	ctx.lineTo(0,oConnectorSize);
+	ctx.stroke();
+	ctx.restore();
+}
+
+function drawFlowSource(pos){
+	var flowSourceSize = elementSize/2;
+	ctx.save();
+	ctx.beginPath();
+	ctx.translate(pos[0],pos[1]);
+	ctx.lineTo(flowSourceSize,flowSourceSize);
+	ctx.lineTo(0,0);
+	ctx.lineTo(-flowSourceSize,flowSourceSize);
+	ctx.lineTo(0,0);
+	ctx.lineTo(flowSourceSize,-flowSourceSize);
+	ctx.lineTo(0,0);
+	ctx.lineTo(-flowSourceSize,-flowSourceSize);
+	ctx.lineTo(0,0);
+	ctx.stroke();
+	ctx.restore();
+}
+
+function drawEffortSource(pos){
+	var effortSourceSize = elementSize/2;
+	ctx.save();
+	ctx.beginPath();
+	ctx.translate(pos[0],pos[1]);
+	ctx.arc(0,0,effortSourceSize,0,2*Math.PI);
 	ctx.stroke();
 	ctx.restore();
 }
