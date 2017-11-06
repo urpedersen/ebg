@@ -24,43 +24,39 @@ class Element {
     console.log("" + this.label + " at (" + this.x + ", " + this.y + "), index = " + this.id);  
   }
 
-/*
-  update(dt){
-    switch(this.type){
-      case "o-storage":
-      // ARGhhhh, det er svært ...
-      break;
-    }
+  draw() {
+     // TODO
   }
-*/
+}
 
-/*
-  update(dt) {
-    swich(this.type){
-    case "leak":
-      //   
-      break;
-    case "o-storage":
-      //   
-      break;
-    }
+class XConnector extends Element {
+  
+}
+
+class OConnector extends Element {
+  
+}
+
+class FlowSource extends Element {
+  
+}
+
+class EffortSource extends Element {
+  
+}
+
+
+// O-storage, e.g. a capacitor of spring
+class OStorage extends Element {
+  constructor(){
+    super();
+    this.level = 0;
+    this.capacity = 1.0;
   }
-*/
-}
-
-
-class Xconnection extends Element {
   
-}
-
-class Oconnection extends Element {
-  
-}
-
-// O-storage, e.g. a capacitor 
-class Ostorage extends Element {
-
-  
+  toConsole() {
+    console.log(this.label + ": level = " + this.level + " capacity = " +  this.capacity + "   at (" + this.x + ", " + this.y + "), index = " + this.id);  
+  }
 
   setLevel(level){
     this.level = level;
@@ -71,7 +67,30 @@ class Ostorage extends Element {
   }
 }
 
-class leak extends Element {
+
+
+// O-storage, e.g. a capacitor of spring
+class XStorage extends Element {
+  constructor(){
+    super();
+    this.level = 0;
+    this.capacity = 1.0;
+  }
+  
+  toConsole() {
+    console.log(this.label + ": level = " + this.level + " capacity = " +  this.capacity + "   at (" + this.x + ", " + this.y + "), index = " + this.id);  
+  }
+
+  setLevel(level){
+    this.level = level;
+  }
+
+  setCapacity(capacity){
+    this.capacity = capacity;
+  }
+}
+
+class Leak extends Element {
   
 }
 

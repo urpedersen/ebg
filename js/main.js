@@ -15,11 +15,11 @@ window.onload = function() {
   drawEffortSource(pos2);
 
   // Construct elements
-  var C = new Ostorage();
+  var C = new OStorage();
   C.set(0,"Capacitor" ,  gridSize ,gridSize);
-  var X  = new Xconnection(); 
+  var X  = new XConnector(); 
   X.set(1,"X-Connection", 2*gridSize,gridSize);
-  var R  = new leak();
+  var R  = new Leak();
   R.set(2,"Resistor"   ,3*gridSize,gridSize);
   
   // Connect elements
