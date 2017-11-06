@@ -1,15 +1,31 @@
+var gridSize = 64;
 var elementSize = 20;
 var elements = [];
 
 window.onload = function() {
   console.log("load setup()");
 
-  var first = new Element(0,"o-storage",1.0,1.0,10,10);
-  elements.push(first);
-  var second = new Element(1,"leak",1.0,1.0,60,10);
-  first.connect(second);
-  elements.push(second);
-
-
-  drawElement(elements[0]);
+  // Construc elements
+  var C = new Ostorage();
+  C.set(0,"Capacitor" ,  gridSize ,gridSize);
+  var X  = new Xconnection(); 
+  X.set(1,"X-Connection", 2*gridSize,gridSize);
+  var R  = new leak();
+  R.set(2,"Resistor"   ,3*gridSize,gridSize);
+  
+  // Connect elements
+  C.connect(X);
+  R.connect(X);
+  
+  // Add elements to array
+  elements.push(C);
+  elements.push(X);
+  elements.push(R);
+  
+  // Print elements
+  for (e of elements) e.toConsole();
+  
+  // Draw elements
+  for (e of elements) drawElement(e);
+  
 };
