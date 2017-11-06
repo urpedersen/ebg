@@ -31,9 +31,51 @@ class Element {
 
 class XConnector extends Element {
   
+
+  draw() {
+    var xConnectorSize = elementSize/2;
+    ctx.save();
+    ctx.translate(this.x,this.y);
+    ctx.beginPath();
+    ctx.moveTo(xConnectorSize/2,xConnectorSize/2);
+    ctx.lineTo(-xConnectorSize/2,-xConnectorSize/2);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(xConnectorSize/2,-xConnectorSize/2);
+    ctx.lineTo(-xConnectorSize/2,xConnectorSize/2);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(xConnectorSize,0);
+    ctx.lineTo(0,xConnectorSize);
+    ctx.lineTo(-xConnectorSize,0);
+    ctx.lineTo(0,-xConnectorSize);
+    ctx.lineTo(xConnectorSize,0);
+    ctx.lineTo(0,xConnectorSize);
+    ctx.stroke();
+    ctx.restore();
+  }
 }
 
 class OConnector extends Element {
+
+
+  draw(){
+    var oConnectorSize = elementSize/2;
+    ctx.save();
+    ctx.beginPath();
+    ctx.translate(this.x,this.y);
+    ctx.arc(0,0,oConnectorSize/2,0,2*Math.PI)
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(oConnectorSize,0);
+    ctx.lineTo(0,oConnectorSize);
+    ctx.lineTo(-oConnectorSize,0);
+    ctx.lineTo(0,-oConnectorSize);
+    ctx.lineTo(oConnectorSize,0);
+    ctx.lineTo(0,oConnectorSize);
+    ctx.stroke();
+    ctx.restore();
+}
   
 }
 
@@ -65,6 +107,22 @@ class OStorage extends Element {
   setCapacity(capacity){
     this.capacity = capacity;
   }
+
+  draw(){
+    var storageSize = elementSize*2;
+
+    ctx.save();
+    ctx.beginPath();
+    ctx.translate(this.x,this.y);
+    ctx.arc(0,0,storageSize,0.5*Math.PI-0.2*Math.PI,0.5*Math.PI+0.2*Math.PI);
+    // ctx.lineTo(-storageSize/2,0);
+    // ctx.lineTo(-storageSize/2,-storageSize);
+    // ctx.lineTo(0,-storageSize-storageSize/4);
+    // ctx.lineTo(storageSize/2,-storageSize);
+    // ctx.lineTo(storageSize/2,0);
+    ctx.stroke();
+    ctx.restore();
+  } 
 }
 
 

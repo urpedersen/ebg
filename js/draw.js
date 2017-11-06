@@ -57,7 +57,7 @@ function drawElement(ele){
 		ctx.save();
 		// ctx.translate(direction.properties[dir].xAdd,direction.properties[dir].yAdd);
 		// drawConnection(ele,ele.connections[i],"none",dir);
-		drawConnection(ele,ele.connections[i],"ef",rot);
+		drawConnection(ele,ele.connections[i],"none",rot);
 		ctx.restore();
 		ctx.rect(ele.connections[i].x,ele.connections[i].y,1,1);
 	}

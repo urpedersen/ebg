@@ -21,6 +21,9 @@ window.onload = function() {
   X.set(1,"X-Connection", 2*gridSize,gridSize);
   var R  = new Leak();
   R.set(2,"Resistor"   ,3*gridSize,gridSize);
+
+  X.draw();
+  C.draw();
   
   // Connect elements
   C.connect(X);
@@ -35,6 +38,6 @@ window.onload = function() {
   for (e of elements) e.toConsole();
   
   // Draw elements
-  for (e of elements) drawElement(e);
+  // for (e of elements) drawElement(e);
   
 };
